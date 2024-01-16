@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="gorselFinal.Haberler"
+             Title="Haberler">
+    <ContentPage.ToolbarItems>
+    <ToolbarItem IconImageSource="update.png" Order="Primary" Text="Güncelle" Clicked="ToolbarItem_Clicked"/>
+</ContentPage.ToolbarItems>
+
+<Grid RowDefinitions="Auto,*">
+    <CollectionView x:Name="category" Grid.Row="0" SelectionMode="Single" SelectionChanged="category_SelectionChanged">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="baslik" Text="{Binding Baslik}"/>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+    <CollectionView x:Name="lsHaberler" Grid.Row="1" SelectionMode="Single" SelectionChanged="lsHaberler_SelectionChanged">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="18"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Padding="10">
+                    <Image Source="{Binding enclosure.link}" Aspect="AspectFill" HeightRequest="100"/>
+                    <Label Text="{Binding title}" FontAttributes="Bold" LineBreakMode="WordWrap"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding author}" VerticalOptions="Center"/>
+                        <Label Text=" | " VerticalOptions="Center"/>
+                        <Label Text="{Binding pubDate}" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</Grid>
+</ContentPage>
